@@ -9,4 +9,9 @@ primerjavo košarice nabora živil po različnih trgovinah in izračun košarice
 Provider za oblačne storitve: Microsoft Azure
 Razvojno okolje: Uporaba DRF (django-rest-framework) za razvoj poslovne logike na BE.
 
-
+Microservice struktura
+- Fetchanje podatkov iz spletnih trgovin
+	- Uporaba parametrov za iskanje specifičnih produktov
+- Primerjava produktov
+- User & Authentication
+	- Login, Register
