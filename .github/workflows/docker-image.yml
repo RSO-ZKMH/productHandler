@@ -23,4 +23,4 @@ jobs:
     - name: Build Docker image
       run: docker build . --file Dockerfile --tag zankor/products-data:$(date +%s)
     - name: Push Docker image
-      run: docker push ${{secrets.DOCKER_USER}}/rso-price-compare
+      run: docker push ${{secrets.DOCKER_USER}}/products-data:$(date +%s)
