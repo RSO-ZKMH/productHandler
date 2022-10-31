@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productHandler-app
+  labels:
+    app: productHandler
+spec:
+	replicas: 2
+  selector:
+    matchLabels:
+      app: productHandler
+  template:
+    metadata:
+      labels:
+        app: productHandler
+    spec:
+      containers:
+        - image: zankor/products-data:latest
+          name: products-data
