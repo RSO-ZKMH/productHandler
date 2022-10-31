@@ -21,6 +21,6 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build Docker image
-      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/products-data:latest
+      run: docker build . --file admin/Dockerfile --tag ${{secrets.DOCKER_USER}}/products-data:latest
     - name: Push Docker image
       run: docker push ${{secrets.DOCKER_USER}}/products-data
