@@ -27,7 +27,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: service-backend-api
+  name: producthandler-api
   namespace: rso-deploy
   labels:
     app: strapi

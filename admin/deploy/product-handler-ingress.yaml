@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-producthandler-api
+  namespace: rso-deploy
+  annotations:
+    kubernetes.io/ingress.class: nginx    
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/proxy-body-size: 500m
+
+spec:
+  rules:
+  - host: product-handler
+    http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: producthandler-api
+              port:
+                number: 8000
+
+status:
+  loadBalancer:
+    ingress:
+      - ip: 20.107.161.14
