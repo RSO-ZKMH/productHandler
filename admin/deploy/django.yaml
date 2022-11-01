@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: productHandler-app
+  name: producthandler-api
+  namespace: rso-deploy
   labels:
     app: productHandler
 spec:
-	replicas: 2
   selector:
     matchLabels:
       app: productHandler
@@ -13,7 +13,32 @@ spec:
     metadata:
       labels:
         app: productHandler
+        component: backend
     spec:
       containers:
-        - image: zankor/products-data:latest
+        - name: productHandler-backend
+          image: zankor/products-data:latest
           name: products-data
+          imagePullPolicy: "Always"
+          ports:
+            - containerPort: 8000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-backend-api
+  namespace: rso-deploy
+  labels:
+    app: strapi
+spec:
+  ports:
+    - protocol: TCP
+      port: 1337
+      targetPort: 1337
+  selector:
+    app: productHandler
+    component: backend
+  type: ClusterIP
+
+---
