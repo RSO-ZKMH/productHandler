@@ -6,6 +6,7 @@ metadata:
   labels:
     app: productHandler
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: productHandler
@@ -30,7 +31,7 @@ metadata:
   name: producthandler-api
   namespace: rso-deploy
   labels:
-    app: strapi
+    app: productHandler
 spec:
   ports:
     - protocol: TCP

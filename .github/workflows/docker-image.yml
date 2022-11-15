@@ -24,3 +24,14 @@ jobs:
       run: docker build . --file admin/Dockerfile --tag ${{secrets.DOCKER_USER}}/products-data:latest
     - name: Push Docker image
       run: docker push ${{secrets.DOCKER_USER}}/products-data
+
+    - name: Azure Login
+      uses: Azure/login@v1.4.6
+      with:
+        creds: ${{secrets.AZURE_CREDENTIALS}}
+
+    - name: Deploy to Kubernetes cluster
+      uses: Azure/k8s-deploy@v4.6
+      with:
+        manifests: |
+          admin/deploy/django-deployment

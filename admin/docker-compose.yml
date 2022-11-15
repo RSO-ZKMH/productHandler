@@ -1,25 +1,28 @@
 version: "3.9"
-   
+volumes:
+  db_data:
+
+
 services:
-  backend:
+  web:
+    #depends_on:
+    #  - db
     build:
       context: .
       dockerfile: Dockerfile
+    image: django-k8s:v1
     ports:
-      - 8000:8000
-    volumes:
-      - .:/app
-    depends_on:
-      - db
+      - "8000:8000"
+    command: sh -c "chmod +x /app/migrate.sh && sh /app/migrate.sh && /app/entrypoint.sh"
 
-  db:
-    image: postgres
-    restart: always
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-    ports:
-      - 5432:5432
+#  db:
+#    image: postgres
+#    restart: always
+#    volumes:
+#      - db_data:/var/lib/postgresql/data
+#    environment:
+#      - POSTGRES_DB=db
+#      - POSTGRES_USER=admin
+#      - POSTGRES_PASSWORD=password
+#    ports:
+#      - 5432:5432

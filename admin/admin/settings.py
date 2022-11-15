@@ -79,21 +79,17 @@ WSGI_APPLICATION = 'admin.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'local': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    },
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_NAME', 'postgres'),
-        'USER': os.environ.get('POSTGRES_USER', 'postgres'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'postgres'),
-        'HOST': 'db', # Service name from docker-compose.yml
+        'NAME': 'porsfkci',
+        'USER': 'porsfkci',
+        'PASSWORD': 'dNAVaiU2ngO5fYftVz9EFBtslSfvJKOE',
+        'HOST': 'mouse.db.elephantsql.com', # Service name from docker-compose.yml
         'PORT': 5432, # Service port from docker-compose.yml
     }
 }
 
-
+print(DATABASES)
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
