@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  - uses: RSO-ZKMH/productHandler/.github/workflows/products-deployment.yaml@main 
+  #uses: RSO-ZKMH/productHandler/.github/workflows/products-deployment.yaml@main 
   build:
 
     runs-on: ubuntu-latest
