@@ -7,14 +7,14 @@ on:
     branches: [ "main" ]
 
 jobs:
-
+  - uses: RSO-ZKMH/productHandler/.github/workflows/products-deployment.yaml@main 
   build:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@main
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
     - name: Docker login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
