@@ -9,11 +9,10 @@ on:
 jobs:
   #uses: RSO-ZKMH/productHandler/.github/workflows/products-deployment.yaml@main 
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
     - name: Docker login
       env:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
@@ -21,7 +20,7 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build Docker image
-      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/products-data:latest
+      run: docker build . --file admin/Dockerfile --tag ${{secrets.DOCKER_USER}}/products-data:latest
     - name: Push Docker image
       run: docker push ${{secrets.DOCKER_USER}}/products-data
 
