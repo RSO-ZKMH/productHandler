@@ -43,4 +43,4 @@ jobs:
           kubectl set image deployment/producthandler-deployment producthandler-api=${{secrets.DOCKER_USER}}/products-data:latest -n rso-deploy
       - name: Wait for rollout to finish
         run: |
-          kubectl rollout status deployment/producthandler-deployment
+          kubectl rollout status deployment/producthandler-deployment -n rso-deploy
