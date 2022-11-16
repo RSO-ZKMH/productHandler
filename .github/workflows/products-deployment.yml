@@ -33,4 +33,4 @@ jobs:
       uses: Azure/k8s-deploy@v4.6
       with:
         manifests: |
-          admin/deploy/django-deployment
+          admin/deploy/django-deployment.yaml
