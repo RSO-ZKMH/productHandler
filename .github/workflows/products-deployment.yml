@@ -19,9 +19,9 @@ jobs:
       - name: Docker login
         run: |
           docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
-        working-directory: ./admin
       - name: Build Docker image
-        run: docker build  -f admin/Dockerfile -t ${{secrets.DOCKER_USER}}/products-data:latest .
+        working-directory: ./admin
+        run: docker build -f admin/Dockerfile -t ${{secrets.DOCKER_USER}}/products-data:latest .
 
       - name: Push Docker image
         run: docker push ${{secrets.DOCKER_USER}}/products-data
