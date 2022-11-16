@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./web
+        working-directory: ./admin
     env:
       DJANGO_SECRET_KEY: test-key-not-good-maybe-make-one-better
       DB_IGNORE_SSL: "true"
