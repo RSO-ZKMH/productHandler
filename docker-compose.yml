@@ -1,14 +1,10 @@
 version: "3.9"
-volumes:
-  db_data:
-
-
 services:
   web:
     #depends_on:
     #  - db
     build:
-      context: .
+      context: ./admin
       dockerfile: Dockerfile
     image: django-k8s:v1
     ports:
