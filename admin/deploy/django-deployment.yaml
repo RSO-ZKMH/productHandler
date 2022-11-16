@@ -19,7 +19,6 @@ spec:
       containers:
         - name: productHandler-backend
           image: zankor/products-data:latest
-          name: products-data
           imagePullPolicy: "Always"
           ports:
             - containerPort: 8000
