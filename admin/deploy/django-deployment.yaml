@@ -23,7 +23,7 @@ spec:
         component: backend
     spec:
       containers:
-        - name: productHandler-backend
+        - name: producthandler-api
           image: zankor/products-data:latest
           imagePullPolicy: "Always"
           ports:
