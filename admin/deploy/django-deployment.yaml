@@ -7,19 +7,19 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: producthandler
+  name: producthandler-deployment
   namespace: rso-deploy
   labels:
-    app: productHandler
+    app: producthandler-api
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: productHandler
+      app: producthandler-api
   template:
     metadata:
       labels:
-        app: productHandler
+        app: producthandler-api
         component: backend
     spec:
       containers:
@@ -36,7 +36,7 @@ metadata:
   name: producthandler-service
   namespace: rso-deploy
   labels:
-    app: productHandler
+    app: producthandler-api
 spec:
   type: LoadBalancer
   ports:
@@ -45,7 +45,7 @@ spec:
       port: 8000
       targetPort: 8000
   selector:
-    app: productHandler
+    app: producthandler-api
     component: backend
 
 ---
