@@ -9,4 +9,4 @@ services:
     image: django-k8s:v1
     ports:
       - "8000:8000"
-    command: sh -c "ls && chmod +x /app/migrate.sh && sh /app/migrate.sh && /app/collectstatic.sh && /app/entrypoint.sh"
+    command: sh -c "ls && chmod +x /app/migrate.sh && sh /app/migrate.sh && /app/entrypoint.sh"
