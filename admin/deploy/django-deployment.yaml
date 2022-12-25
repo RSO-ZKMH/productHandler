@@ -38,7 +38,7 @@ metadata:
   labels:
     app: producthandler-api
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - port: 8000
       protocol: TCP
