@@ -124,10 +124,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 # Check if environment variable is set for static url
-if os.environ.get('STATIC_URL'):
-    STATIC_URL = os.path.join(os.environ.get('STATIC_URL'), 'static/')
-else:
-    STATIC_URL = 'static/'
+STATIC_URL = 'products/static/'
 
 
 
