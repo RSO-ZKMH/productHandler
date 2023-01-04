@@ -3,6 +3,7 @@ from products.models import User
 from products.models import Product
 from .serializers import ProductSerializer
 from rest_framework.response import Response
+from django.http import JsonResponse
 from rest_framework import viewsets, status
 from drf_yasg.utils import swagger_auto_schema
 
@@ -11,9 +12,12 @@ from drf_yasg.utils import swagger_auto_schema
 
 class ProductViewSet(viewsets.ViewSet):
     def list(self, request): # GET /api/products
-        queryset = Product.objects.all()
+        queryset = list(Product.objects.all().values())
         serializer = ProductSerializer(queryset, many=True)
-        return Response(serializer.data)
+
+        # Check if json parameter is passed
+
+        return JsonResponse(queryset, safe=False, status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk=None): # GET /api/products/:id
         queryset = Product.objects.all()
