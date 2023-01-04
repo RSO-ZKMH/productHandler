@@ -123,7 +123,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+# Check if environment variable is set for static url
+if os.environ.get('STATIC_URL'):
+    STATIC_URL = os.path.join(os.environ.get('STATIC_URL'), 'static/')
+else:
+    STATIC_URL = 'static/'
+
+
+
+print(BASE_DIR, STATIC_URL)
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 # Default primary key field type

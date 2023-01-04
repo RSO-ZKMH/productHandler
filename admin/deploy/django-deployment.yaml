@@ -28,7 +28,11 @@ spec:
           imagePullPolicy: "Always"
           ports:
             - containerPort: 8000
-
+          env:
+            
+            # Add static environment variables here
+            - name: STATIC_URL
+              value: "http://20.81.23.102/products"
 ---
 apiVersion: v1
 kind: Service
