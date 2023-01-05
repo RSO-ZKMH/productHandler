@@ -91,7 +91,7 @@ DATABASES = {
 
 SWAGGER_SETTINGS = {
    'USE_SESSION_AUTH': False,
-    'url': '/products/products/static/drf-yasg/'
+    'url': '/products/static/drf-yasg/'
 }
 
 # Password validation
@@ -128,7 +128,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/products/static/'
+STATIC_URL = '/products/products/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
