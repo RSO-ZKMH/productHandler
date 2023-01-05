@@ -91,7 +91,7 @@ DATABASES = {
 
 SWAGGER_SETTINGS = {
    'USE_SESSION_AUTH': False,
-    'url': '/products/static/drf-yasg/'
+    'url': '/products/products/static/drf-yasg/'
 }
 
 # Password validation
