@@ -10,15 +10,19 @@ metadata:
     #nginx.ingress.kubernetes.io/rewrite-target: /$2
 
     nginx.ingress.kubernetes.io/configuration-snippet: |
+
+
       # Rewrite to /$2 if the path does not contain 'static'
       if ($request_uri !~* "/products/static") {
-        add_header "X-Path" TESTPRODUCTS;
+        add_header "X-Path" $request_uri;
         rewrite ^/products(/|$)(.*) /$2 break;
       }
       if ($request_uri !~* "/shoppingBasket/static") {
         add_header "X-Path" TESTPRODUCTS;
         rewrite ^/shoppingBasket(/|$)(.*) /$2 break;
       }
+
+
     
 
 spec:

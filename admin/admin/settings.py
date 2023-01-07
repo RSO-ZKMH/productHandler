@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-(cx1!)ziag&g9k(xn%h1odef+t432cggcby4o0(*=r*787@8#r
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+FORCE_SCRIPT_NAME = os.getenv('BASE_PATH', '')
 
 # Application definition
 
@@ -144,7 +144,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'products/static/'
+STATIC_URL = 'static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
