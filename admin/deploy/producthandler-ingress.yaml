@@ -6,18 +6,20 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/app-root: /app
+    nginx.ingress.kubernetes.io/app-root: /products
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 
     # Check if url does not contain /static
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      if ($request_uri ~* ^/static) {
+
+    #nginx.ingress.kubernetes.io/configuration-snippet: |
+    #  if ($request_uri ~* ^/static) {
 
         # Print the request uri
-        add_header X-my-debug $request_uri;
+        #add_header X-my-debug $request_uri;
 
         # Rewrite to $2
-        rewrite ^(.*)$ $2 break;
-      }
+        #rewrite ^(.*)$ $2 break;
+      #}
 
 
     
