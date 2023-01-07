@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'products',
     'drf_yasg',
+    'constance',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +54,22 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CONSTANCE_CONFIG = {
+    'THE_ANSWER': (42, 'Answer to the Ultimate Question of Life, '
+                       'The Universe, and Everything'),
+}
+CONSTANCE_BACKEND = 'constance.backends.redisd.RedisBackend'
+
+CONSTANCE_BACKEND = 'constance.backends.redisd.CachingRedisBackend'
+# optionally set a value ttl
+CONSTANCE_REDIS_CACHE_TIMEOUT = 60
+
+CONSTANCE_REDIS_CONNECTION = {
+    'host': os.environ.get('REDIS_HOST', '127.0.0.1'),
+    'port': 6379,
+    'db': 0,
+}
 
 ROOT_URLCONF = 'admin.urls'
 

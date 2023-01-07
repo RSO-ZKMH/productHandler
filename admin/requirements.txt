@@ -7,3 +7,5 @@ django-storages
 drf_yasg
 gunicorn
 requests
+django-constance
+django-constance[redis]
