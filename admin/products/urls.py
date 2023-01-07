@@ -12,6 +12,7 @@ schema_view = swagger_get_schema_view(
         title="Products API",
         default_version='1.0.0',
         description="API Documentation for products",
+        url="/products/"
     ),
     public=True
 )

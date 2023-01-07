@@ -7,21 +7,18 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/app-root: /products
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    #nginx.ingress.kubernetes.io/rewrite-target: /$2
 
-    # Check if url does not contain /static
-
-    #nginx.ingress.kubernetes.io/configuration-snippet: |
-    #  if ($request_uri ~* ^/static) {
-
-        # Print the request uri
-        #add_header X-my-debug $request_uri;
-
-        # Rewrite to $2
-        #rewrite ^(.*)$ $2 break;
-      #}
-
-
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      # Rewrite to /$2 if the path does not contain 'static'
+      if ($request_uri !~* "/products/static") {
+        add_header "X-Path" TESTPRODUCTS;
+        rewrite ^/products(/|$)(.*) /$2 break;
+      }
+      if ($request_uri !~* "/shoppingBasket/static") {
+        add_header "X-Path" TESTPRODUCTS;
+        rewrite ^/shoppingBasket(/|$)(.*) /$2 break;
+      }
     
 
 spec:
@@ -43,11 +40,3 @@ spec:
                 name: producthandler-service
                 port:
                   number: 8000
-          - path: /*/(css|js)
-            pathType: Prefix
-            backend:
-              service:
-                name: producthandler-service
-                port:
-                  number: 8000
-            
