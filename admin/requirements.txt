@@ -9,3 +9,4 @@ gunicorn
 requests
 django-constance
 django-constance[redis]
+graphene-django

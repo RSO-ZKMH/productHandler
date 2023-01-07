@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from products.models import User
 from products.models import Product
 from .serializers import ProductSerializer
@@ -6,17 +6,25 @@ from rest_framework.response import Response
 from django.http import JsonResponse
 from rest_framework import viewsets, status
 from drf_yasg.utils import swagger_auto_schema
-
-# Create your views here.
-
+from constance import config
+from constance.signals import config_updated
+from django.dispatch import receiver
 
 class ProductViewSet(viewsets.ViewSet):
+
+    @receiver(config_updated)
+    def constance_updated(sender, key, old_value, new_value, **kwargs):
+        print(sender, key, old_value, new_value)
+
     def list(self, request): # GET /api/products
         queryset = list(Product.objects.all().values())
         serializer = ProductSerializer(queryset, many=True)
 
-        # Check if json parameter is passed
+        # Add a new field to the response
+        for i in range(len(queryset)):
+            queryset[i]['new_field'] = config.THE_ANSWER
 
+        print(queryset)
         return JsonResponse(queryset, safe=False, status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk=None): # GET /api/products/:id

@@ -26,7 +26,6 @@ SECRET_KEY = 'django-insecure-(cx1!)ziag&g9k(xn%h1odef+t432cggcby4o0(*=r*787@8#r
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-FORCE_SCRIPT_NAME = os.getenv('BASE_PATH', '')
 
 # Application definition
 
@@ -37,11 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'constance',
     'rest_framework',
     'corsheaders',
     'products',
     'drf_yasg',
-    'constance',
+    'graphene_django',
 ]
 
 MIDDLEWARE = [
@@ -57,8 +57,9 @@ MIDDLEWARE = [
 
 CONSTANCE_CONFIG = {
     'THE_ANSWER': (42, 'Answer to the Ultimate Question of Life, '
-                       'The Universe, and Everything'),
+                       'The Universe, and Everything')
 }
+
 CONSTANCE_BACKEND = 'constance.backends.redisd.RedisBackend'
 
 CONSTANCE_BACKEND = 'constance.backends.redisd.CachingRedisBackend'
@@ -70,6 +71,9 @@ CONSTANCE_REDIS_CONNECTION = {
     'port': 6379,
     'db': 0,
 }
+
+FORCE_SCRIPT_NAME = os.environ.get('BASE_PATH', '')
+
 
 ROOT_URLCONF = 'admin.urls'
 
