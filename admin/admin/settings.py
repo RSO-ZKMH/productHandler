@@ -91,7 +91,6 @@ DATABASES = {
 
 SWAGGER_SETTINGS = {
    'USE_SESSION_AUTH': False,
-    'url': '/static/swagger-ui/'
 }
 
 # Password validation

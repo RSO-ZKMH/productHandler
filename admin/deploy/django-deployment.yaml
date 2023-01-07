@@ -28,6 +28,9 @@ spec:
           imagePullPolicy: "Always"
           ports:
             - containerPort: 8000
+      env: 
+        name: "BASE_PATH"
+        value: "/products"
 ---
 apiVersion: v1
 kind: Service
