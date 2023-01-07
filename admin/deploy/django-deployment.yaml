@@ -31,6 +31,8 @@ spec:
           env: 
           - name: "BASE_PATH"
             value: "/products"
+          - name: "REDIS_HOST"
+            value: "redis"
 ---
 apiVersion: v1
 kind: Service
