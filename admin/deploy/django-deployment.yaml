@@ -35,13 +35,13 @@ spec:
             value: "redis"
           livenessProbe:
             httpGet:
-              path: /health
+              path: /products/health
               port: 8000
             initialDelaySeconds: 20
             periodSeconds: 3
           readinessProbe:
               httpGet:
-                path: /health
+                path: /products/readiness
                 port: 8000
               initialDelaySeconds: 20
               periodSeconds: 3
