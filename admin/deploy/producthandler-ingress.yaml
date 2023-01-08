@@ -44,3 +44,10 @@ spec:
                 name: producthandler-service
                 port:
                   number: 8000
+          - path: /app
+            pathType: Prefix
+            backend:
+              service:
+                name: productapp-service
+                port:
+                  number: 9000

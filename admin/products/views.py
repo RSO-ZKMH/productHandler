@@ -11,20 +11,22 @@ from constance.signals import config_updated
 from django.dispatch import receiver
 
 class ProductViewSet(viewsets.ViewSet):
-
-    @receiver(config_updated)
-    def constance_updated(sender, key, old_value, new_value, **kwargs):
-        print(sender, key, old_value, new_value)
-
     def list(self, request): # GET /api/products
         queryset = list(Product.objects.all().values())
+
+        # Check if request contains any query parameters
+        if request.query_params:
+            # Get the value of the query parameter
+            search = request.query_params.get('search', None)
+            if search is not None:  
+                # Search on the fields title, price, store
+                queryset = list(Product.objects.filter(title__icontains=search).values())
+                queryset += list(Product.objects.filter(price__icontains=search).values())
+                queryset += list(Product.objects.filter(store__icontains=search).values())
+                # Remove duplicates
+                queryset = list({v['id']:v for v in queryset}.values())
         serializer = ProductSerializer(queryset, many=True)
-
-        # Add a new field to the response
-        for i in range(len(queryset)):
-            queryset[i]['new_field'] = config.THE_ANSWER
-
-        print(queryset)
+        
         return JsonResponse(queryset, safe=False, status=status.HTTP_200_OK)
 
     def retrieve(self, request, pk=None): # GET /api/products/:id

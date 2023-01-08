@@ -25,10 +25,7 @@ SECRET_KEY = 'django-insecure-(cx1!)ziag&g9k(xn%h1odef+t432cggcby4o0(*=r*787@8#r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -106,7 +103,10 @@ DATABASES = {
         'USER': 'porsfkci',
         'PASSWORD': 'dNAVaiU2ngO5fYftVz9EFBtslSfvJKOE',
         'HOST': 'mouse.db.elephantsql.com', # Service name from docker-compose.yml
-        'PORT': 5432, # Service port from docker-compose.yml
+        'PORT': 5432, # Service port from docker-compose.yml,
+        'OPTIONS': {
+            'connect_timeout': 3,
+        }
     }
 }
 
@@ -157,4 +157,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ORIGIN_ALLOW_ALL = True
+ALLOWED_HOSTS = ['*']
+
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1", 
+]
