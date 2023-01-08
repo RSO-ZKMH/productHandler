@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -23,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(cx1!)ziag&g9k(xn%h1odef+t432cggcby4o0(*=r*787@8#r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # Application definition
 INSTALLED_APPS = [
@@ -47,7 +46,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -73,7 +71,6 @@ HEALTH_CHECK = {
     'ALLOWED_PATHS': None,  # all others urls, use original ALLOWED_HOSTS. Ex: ['api/v1/health', '/health'], None allow all
     'ALLOWED_HOSTS': None,  # check request host is in a list, Ex: ['127.0.0.1', 'www.domain.com'], None allow all
 }
-print(REDIS_URL)
 
 CONSTANCE_CONFIG = {
     'THE_ANSWER': (42, 'Answer to the Ultimate Question of Life, '
@@ -107,7 +104,6 @@ LOGGING = {
 }
 
 FORCE_SCRIPT_NAME = os.environ.get('BASE_PATH', '')
-WHITENOISE_ROOT = FORCE_SCRIPT_NAME
 
 ROOT_URLCONF = 'admin.urls'
 
