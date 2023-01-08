@@ -24,5 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('products.urls')),
     path("graphql", GraphQLView.as_view(graphiql=True, schema=schema)),
-    path(r'ht/', include('health_check.urls')),
+    path('ht/', include('health_check.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

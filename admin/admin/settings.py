@@ -55,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'request_logging.middleware.LoggingMiddleware',
 ]
 
 REDIS_URL = "redis://" + os.environ.get('REDIS_HOST', 'localhost') + ":6379"
@@ -85,6 +86,23 @@ CONSTANCE_REDIS_CONNECTION = {
     'host': os.environ.get('REDIS_HOST', '127.0.0.1'),
     'port': 6379,
     'db': 0,
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'DEBUG',  # change debug level as appropiate
+            'propagate': False,
+        },
+    },
 }
 
 FORCE_SCRIPT_NAME = os.environ.get('BASE_PATH', '')
