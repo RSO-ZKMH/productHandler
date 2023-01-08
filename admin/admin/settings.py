@@ -107,7 +107,7 @@ LOGGING = {
 }
 
 FORCE_SCRIPT_NAME = os.environ.get('BASE_PATH', '')
-
+WHITENOISE_ROOT = FORCE_SCRIPT_NAME
 
 ROOT_URLCONF = 'admin.urls'
 
