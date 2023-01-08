@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "custom_middleware.HealthCheckMiddleware", # add custom middleware
+    'django_k8s_health_check.middleware.HealthCheckMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -53,17 +53,28 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+HEALTH_CHECK = {
+    # View
+    'SERVICE_NAME': None,
+    'CHECK_DATABASE': True,
+    'CHECK_CACHE': True,
+
+    # Middleware
+    'HEADER_FIELD': 'X-Health',
+    'HEADER_VALUE': 'health-check',
+    'ALLOWED_PATHS': None,  # all others urls, use original ALLOWED_HOSTS. Ex: ['api/v1/health', '/health'], None allow all
+    'ALLOWED_HOSTS': None,  # check request host is in a list, Ex: ['127.0.0.1', 'www.domain.com'], None allow all
+}
+
+
 CONSTANCE_CONFIG = {
     'THE_ANSWER': (42, 'Answer to the Ultimate Question of Life, '
                        'The Universe, and Everything')
 }
-
 CONSTANCE_BACKEND = 'constance.backends.redisd.RedisBackend'
-
 CONSTANCE_BACKEND = 'constance.backends.redisd.CachingRedisBackend'
 # optionally set a value ttl
 CONSTANCE_REDIS_CACHE_TIMEOUT = 60
-
 CONSTANCE_REDIS_CONNECTION = {
     'host': os.environ.get('REDIS_HOST', '127.0.0.1'),
     'port': 6379,
