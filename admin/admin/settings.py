@@ -57,7 +57,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-REDIS_URL = "redis://" + os.environ.get('REDIS_HOST', 'localhost') + "6379"
+REDIS_URL = "redis://" + os.environ.get('REDIS_HOST', 'localhost') + ":6379"
 
 HEALTH_CHECK = {
     # View
@@ -71,7 +71,7 @@ HEALTH_CHECK = {
     'ALLOWED_PATHS': None,  # all others urls, use original ALLOWED_HOSTS. Ex: ['api/v1/health', '/health'], None allow all
     'ALLOWED_HOSTS': None,  # check request host is in a list, Ex: ['127.0.0.1', 'www.domain.com'], None allow all
 }
-
+print(REDIS_URL)
 
 CONSTANCE_CONFIG = {
     'THE_ANSWER': (42, 'Answer to the Ultimate Question of Life, '
