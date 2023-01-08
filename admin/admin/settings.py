@@ -39,10 +39,14 @@ INSTALLED_APPS = [
     'products',
     'drf_yasg',
     'graphene_django',
+    'health_check',                             # required
+    'health_check.db',                          # stock Django health checkers
+    'health_check.cache',
+    'health_check.storage',
+    'health_check.contrib.redis',               # requires Redis broker
 ]
 
 MIDDLEWARE = [
-    'django_k8s_health_check.middleware.HealthCheckMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -52,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REDIS_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
 
 HEALTH_CHECK = {
     # View

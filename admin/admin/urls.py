@@ -19,12 +19,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from graphene_django.views import GraphQLView
 from products.schema import schema
-from django_k8s_health_check.views import HealthView
-from django_k8s_health_check import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('products.urls')),
     path("graphql", GraphQLView.as_view(graphiql=True, schema=schema)),
-    path('health', views.HealthView.as_view()),
+    path(r'ht/', include('health_check.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

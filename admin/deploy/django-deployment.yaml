@@ -35,10 +35,8 @@ spec:
             value: "redis"
           livenessProbe:
               httpGet:
-              path: /products/health
-              httpHeaders:
-              - name: "X-Health"
-                value: health-check
+                path: /ht
+                port: 8000
               timeoutSeconds: 5
 ---
 apiVersion: v1
