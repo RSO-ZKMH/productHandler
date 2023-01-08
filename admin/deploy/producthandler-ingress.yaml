@@ -15,7 +15,6 @@ metadata:
         add_header "X-Path" $request_uri;
         break;
       }      
-
       # Rewrite to /$2 if the path does not contain 'static'
       if ($request_uri !~* "/products/static") {
         add_header "X-Path" $request_uri;
@@ -24,6 +23,10 @@ metadata:
       if ($request_uri !~* "/shoppingBasket/static") {
         add_header "X-Path" TESTPRODUCTS;
         rewrite ^/shoppingBasket(/|$)(.*) /$2 break;
+      }
+      if ($request_uri !~* "/user/static") {
+        add_header "X-Path" TESTPRODUCTS;
+        rewrite ^/user(/|$)(.*) /$2 break;
       }
 
 spec:
@@ -45,6 +48,13 @@ spec:
                 name: producthandler-service
                 port:
                   number: 8000
+          - path: /user(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: user-service
+                port:
+                  number: 8160
           - path: /app
             pathType: Prefix
             backend:

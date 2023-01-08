@@ -12,3 +12,4 @@ django-constance[redis]
 graphene-django
 django-health-check
 django-request-logging==0.7.5
+WhiteNoise
